@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@layer base {
+  body {
+    @apply bg-zinc-50 text-zinc-900 antialiased min-h-screen selection:bg-zinc-200;
+  }
+}
+
+/* Base Highlighting Styles Adjustments for Markdown */
+.prose pre {
+  @apply !bg-zinc-900 !border !border-zinc-800 !text-[13px] !leading-relaxed rounded-xl;
+}
+.prose code {
+  @apply rounded-md bg-zinc-100 px-1.5 py-0.5 text-zinc-800 font-normal;
+}
+.prose pre code {
+  @apply !bg-transparent p-0 !text-zinc-100;
+}
