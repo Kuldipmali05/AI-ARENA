@@ -1,7 +1,7 @@
 import express from "express";
 import runGraph from "./ai/graph.ai.js";
-import { success } from "zod";
 import cors from "cors";
+import { geminiModel } from "./ai/model.ai.js";
 
 const app = express();
 app.use(express.json());
@@ -26,6 +26,24 @@ app.post("/invoke", async (req, res) => {
     success: true,
     result,
   });
+});
+
+app.get("/test-gemini", async (req, res) => {
+  try {
+    const response = await geminiModel.invoke("Say only: Hello");
+
+    res.json({
+      success: true,
+      response,
+    });
+  } catch (error) {
+    console.error("Gemini Error:", error);
+
+    res.status(500).json({
+      success: false,
+      error: error instanceof Error ? error.message : error,
+    });
+  }
 });
 
 export default app;
